@@ -1,0 +1,140 @@
+aclone.o: aclone.c ../include/irc_string.h ../include/irc_types.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/clone.h ../include/privs.h \
+ ../include/send.h ../include/mem.h
+channels.o: channels.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/channels.h ../include/defines.h ../include/serno.h \
+ ../include/privs.h ../include/send.h ../include/mem.h ../include/me.h \
+ ../include/sclients.h ../include/net.h ../include/oline.h
+chanserv.o: chanserv.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/chanserv.h ../include/channels.h ../include/replies.h \
+ ../include/defines.h ../include/serno.h ../include/send.h
+clone.o: clone.c ../include/irc_string.h ../include/irc_types.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/config.h ../include/clone.h \
+ ../include/privs.h ../include/send.h ../include/mem.h \
+ ../include/net.h ../include/oline.h ../include/me.h \
+ ../include/sclients.h
+conf.o: conf.c ../include/irc_string.h ../include/irc_types.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/config.h \
+ ../include/privs.h ../include/flags.h ../include/conf.h \
+ ../include/mem.h ../include/db.h ../include/me.h \
+ ../include/sclients.h ../include/net.h ../include/oline.h \
+ ../include/servers.h ../include/snuggle.h ../include/clone.h \
+ ../include/nicks.h
+dcc.o: dcc.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/replies.h \
+ ../include/conf.h ../include/oline.h ../include/privs.h \
+ ../include/main.h ../include/send.h ../include/dcc.h ../include/net.h \
+ ../include/md5.h ../include/mem.h ../include/rsa.h ../include/db.h \
+ ../include/me.h ../include/sclients.h
+events.o: events.c ../include/irc_types.h ../include/events.h \
+ ../include/irc_time.h ../include/mem.h
+format.o: format.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/format.h \
+ ../include/defines.h ../include/serno.h
+help.o: help.c ../include/defines.h ../include/serno.h \
+ ../include/sys.h ../include/replies.h ../include/privs.h \
+ ../include/help.h ../include/irc_types.h ../include/client.h \
+ ../include/send.h ../include/me.h ../include/sclients.h \
+ ../include/net.h ../include/oline.h
+irc_string.o: irc_string.c ../include/irc_types.h \
+ ../include/irc_string.h ../include/client.h ../include/sys.h \
+ ../include/irc_time.h ../include/defines.h ../include/serno.h \
+ ../include/send.h
+main.o: main.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/events.h \
+ ../include/format.h ../include/config.h ../include/main.h \
+ ../include/send.h ../include/mem.h ../include/db.h ../include/me.h \
+ ../include/sclients.h ../include/net.h ../include/oline.h \
+ ../include/servers.h ../include/clone.h ../include/snuggle.h \
+ ../include/conf.h ../include/channels.h
+md5.o: md5.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/md5.h ../include/me.h \
+ ../include/sclients.h ../include/net.h ../include/oline.h
+mem.o: mem.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/main.h ../include/mem.h \
+ ../include/net.h ../include/oline.h ../include/me.h \
+ ../include/sclients.h
+nicks.o: nicks.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/nicks.h \
+ ../include/send.h ../include/mem.h ../include/md5.h
+nickserv.o: nickserv.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/nickserv.h \
+ ../include/nicks.h ../include/defines.h ../include/serno.h \
+ ../include/replies.h ../include/privs.h ../include/main.h \
+ ../include/send.h ../include/me.h ../include/sclients.h \
+ ../include/net.h ../include/oline.h
+net.o: net.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/channels.h ../include/servers.h ../include/format.h \
+ ../include/events.h ../include/config.h ../include/privs.h \
+ ../include/parse.h ../include/main.h ../include/send.h \
+ ../include/dcc.h ../include/net.h ../include/defines.h \
+ ../include/serno.h ../include/oline.h ../include/mem.h \
+ ../include/me.h ../include/sclients.h
+oline.o: oline.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/oline.h ../include/privs.h \
+ ../include/flags.h ../include/send.h ../include/mem.h \
+ ../include/rsa.h ../include/me.h ../include/sclients.h \
+ ../include/net.h
+operserv.o: operserv.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/operserv.h ../include/channels.h ../include/snuggle.h \
+ ../include/defines.h ../include/serno.h ../include/servers.h \
+ ../include/config.h ../include/privs.h ../include/oline.h \
+ ../include/clone.h ../include/conf.h ../include/main.h \
+ ../include/send.h ../include/dcc.h ../include/net.h ../include/mem.h \
+ ../include/md5.h ../include/rsa.h ../include/db.h ../include/me.h \
+ ../include/sclients.h
+parse.o: parse.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/channels.h ../include/defines.h ../include/serno.h \
+ ../include/replies.h ../include/servers.h ../include/snuggle.h \
+ ../include/config.h ../include/oline.h ../include/clone.h \
+ ../include/privs.h ../include/send.h ../include/main.h \
+ ../include/msg.h ../include/parse.h ../include/help.h \
+ ../include/operserv.h ../include/nickserv.h ../include/chanserv.h \
+ ../include/net.h ../include/me.h ../include/sclients.h
+rsa.o: rsa.c ../include/defines.h ../include/serno.h ../include/sys.h \
+ ../include/oline.h ../include/irc_types.h ../include/client.h \
+ ../include/rsa.h ../include/mem.h
+sclients.o: sclients.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/channels.h ../include/sclients.h ../include/defines.h \
+ ../include/serno.h ../include/privs.h ../include/mem.h \
+ ../include/net.h ../include/oline.h ../include/me.h
+send.o: send.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/config.h \
+ ../include/format.h ../include/privs.h ../include/send.h \
+ ../include/net.h ../include/oline.h ../include/me.h \
+ ../include/sclients.h
+servers.o: servers.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/defines.h \
+ ../include/serno.h ../include/servers.h ../include/config.h \
+ ../include/privs.h ../include/mem.h ../include/me.h \
+ ../include/sclients.h ../include/net.h ../include/oline.h \
+ ../include/send.h
+snuggle.o: snuggle.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/defines.h ../include/serno.h ../include/replies.h \
+ ../include/snuggle.h ../include/oline.h ../include/privs.h \
+ ../include/send.h ../include/mem.h ../include/md5.h ../include/me.h \
+ ../include/sclients.h ../include/net.h
+users.o: users.c ../include/irc_types.h ../include/irc_string.h \
+ ../include/client.h ../include/sys.h ../include/irc_time.h \
+ ../include/channels.h ../include/servers.h ../include/snuggle.h \
+ ../include/defines.h ../include/serno.h ../include/config.h \
+ ../include/oline.h ../include/clone.h ../include/privs.h \
+ ../include/main.h ../include/send.h ../include/mem.h ../include/net.h \
+ ../include/me.h ../include/sclients.h

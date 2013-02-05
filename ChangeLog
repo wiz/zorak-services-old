@@ -1,0 +1,424 @@
+wiz         2002/10/10 18:19:19 HST	(20021011_0)
+
+  Modified files:
+    include              net.h 
+    src                  clone.c dcc.c net.c 
+  Log:
+  - Rewrote network parser to use stdio functions
+  
+  Revision  Changes    Path
+  1.5       +2 -1      zorak-services/include/net.h
+  1.16      +7 -7      zorak-services/src/clone.c
+  1.5       +4 -2      zorak-services/src/dcc.c
+  1.38      +33 -42    zorak-services/src/net.c
+
+
+
+wiz         2002/10/02 13:28:51 HST	(20021002_7)
+
+  Modified files:
+    src                  main.c net.c 
+  Log:
+  - Fixed dcc cleanup code some more
+  
+  Revision  Changes    Path
+  1.41      +1 -1      zorak-services/src/main.c
+  1.37      +12 -2     zorak-services/src/net.c
+
+
+
+wiz         2002/10/02 12:08:42 HST	(20021002_6)
+
+  Modified files:
+    src                  conf.c dcc.c net.c 
+  Log:
+  - Added M: line IP field for vhosting...
+  - Fixed more DCC stuff and dcc cleanup
+  
+  Revision  Changes    Path
+  1.22      +14 -12    zorak-services/src/conf.c
+  1.4       +16 -1     zorak-services/src/dcc.c
+  1.36      +4 -2      zorak-services/src/net.c
+
+
+
+wiz         2002/10/02 12:08:42 HST	(20021002_5)
+
+  Modified files:
+    doc                  example.conf 
+  Log:
+  - Added M: line IP field for vhosting...
+  
+  Revision  Changes    Path
+  1.8       +6 -6      zorak-services/doc/example.conf
+
+
+
+wiz         2002/10/02 07:39:53 HST	(20021002_4)
+
+  Modified files:
+    src                  .depend conf.c dcc.c main.c net.c parse.c 
+                         sclients.c users.c 
+  Log:
+  - Updated .depend
+  - Added parsing for N0 client
+  - Added client into intro_nick() loop
+  - Added dcc_cleanup() and an add_event() for it in main()
+  - Fixed gline() for real this time
+  - Added entire DCC help system (still buggy and incomplete)
+  
+  Revision  Changes    Path
+  1.8       +69 -40    zorak-services/src/.depend
+  1.21      +2 -2      zorak-services/src/conf.c
+  1.3       +158 -18   zorak-services/src/dcc.c
+  1.40      +3 -1      zorak-services/src/main.c
+  1.35      +16 -0     zorak-services/src/net.c
+  1.58      +1 -0      zorak-services/src/parse.c
+  1.2       +3 -3      zorak-services/src/sclients.c
+  1.35      +6 -2      zorak-services/src/users.c
+
+
+
+wiz         2002/10/02 07:39:53 HST	(20021002_3)
+
+  Modified files:
+    include              dcc.h defines.h 
+  Log:
+  - Added dcc_cleanup() and HELP_DESC, HELP_USAGE
+  
+  Revision  Changes    Path
+  1.3       +1 -0      zorak-services/include/dcc.h
+  1.3       +4 -0      zorak-services/include/defines.h
+
+
+
+wiz         2002/10/01 18:57:28 HST	(20021002_2)
+
+  Modified files:
+    src                  users.c 
+  Log:
+  - Oops had an extra cptr->nick in the last commit
+  
+  Revision  Changes    Path
+  1.34      +1 -1      zorak-services/src/users.c
+
+
+
+wiz         2002/10/01 18:28:06 HST	(20021002_1)
+
+  Modified files:
+    src                  users.c 
+  Log:
+  - hyb7 gline fix for Jeff
+  
+  Revision  Changes    Path
+  1.33      +15 -22    zorak-services/src/users.c
+
+
+
+wiz         2002/10/01 16:56:20 HST	(20021002_0)
+
+  Modified files:
+    include              chanserv.h client.h conf.h dcc.h events.h 
+                         flags.h irc_string.h me.h msg.h net.h 
+                         nicks.h nickserv.h operserv.h parse.h 
+    src                  chanserv.c clone.c conf.c dcc.c events.c 
+                         irc_string.c main.c mem.c net.c 
+                         nickserv.c oline.c operserv.c parse.c 
+                         send.c users.c 
+  Log:
+  - First commit after moving cvs repo
+  
+  Revision  Changes    Path
+  1.2       +2 -2      zorak-services/include/chanserv.h
+  1.2       +0 -2      zorak-services/include/client.h
+  1.2       +1 -0      zorak-services/include/conf.h
+  1.2       +1 -0      zorak-services/include/dcc.h
+  1.2       +1 -0      zorak-services/include/events.h
+  1.6       +1 -1      zorak-services/include/flags.h
+  1.3       +1 -0      zorak-services/include/irc_string.h
+  1.3       +1 -0      zorak-services/include/me.h
+  1.35      +35 -51    zorak-services/include/msg.h
+  1.4       +6 -3      zorak-services/include/net.h
+  1.2       +2 -0      zorak-services/include/nicks.h
+  1.2       +5 -5      zorak-services/include/nickserv.h
+  1.3       +18 -34    zorak-services/include/operserv.h
+  1.2       +25 -27    zorak-services/include/parse.h
+  1.6       +4 -8      zorak-services/src/chanserv.c
+  1.15      +8 -0      zorak-services/src/clone.c
+  1.20      +12 -1     zorak-services/src/conf.c
+  1.2       +265 -21   zorak-services/src/dcc.c
+  1.2       +14 -1     zorak-services/src/events.c
+  1.8       +12 -0     zorak-services/src/irc_string.c
+  1.39      +5 -5      zorak-services/src/main.c
+  1.11      +13 -6     zorak-services/src/mem.c
+  1.34      +154 -131  zorak-services/src/net.c
+  1.6       +10 -10    zorak-services/src/nickserv.c
+  1.18      +6 -0      zorak-services/src/oline.c
+  1.26      +69 -338   zorak-services/src/operserv.c
+  1.57      +18 -25    zorak-services/src/parse.c
+  1.22      +4 -1      zorak-services/src/send.c
+  1.32      +14 -14    zorak-services/src/users.c
+
+
+
+wiz         2002/07/30 11:48:04 HST	(20020730_2)
+
+  Modified files:
+    src                  parse.c 
+  Log:
+  - Fixed a bug in m_error() that might be causing the SIGSEGV too
+  
+  Revision  Changes    Path
+  1.56      +1 -1      zorak-services/src/parse.c
+
+
+
+wiz         2002/07/30 11:31:16 HST	(20020730_1)
+
+  Modified files:
+    include              net.h 
+    src                  Makefile.in main.c net.c 
+  Added files:
+    include              dcc.h events.h 
+    src                  events.c 
+  Log:
+  - Replaced alarm() lameness with new events system, see add_events()
+    Hopefully this will fix SIGSEGV on linux glibc with corrupt linked lists
+  
+  Revision  Changes    Path
+  1.1       +28 -0     zorak-services/include/dcc.h (new)
+  1.1       +37 -0     zorak-services/include/events.h (new)
+  1.3       +2 -0      zorak-services/include/net.h
+  1.22      +1 -0      zorak-services/src/Makefile.in
+  1.1       +77 -0     zorak-services/src/events.c (new)
+  1.38      +11 -16    zorak-services/src/main.c
+  1.33      +27 -10    zorak-services/src/net.c
+
+
+
+wiz         2002/07/29 17:23:02 HST	(20020730_0)
+
+  Modified files:
+    .                    TODO 
+    include              defines.h main.h me.h msg.h net.h 
+                         operserv.h rsa.h servers.h 
+    src                  Makefile.in channels.c main.c net.c 
+                         oline.c operserv.c parse.c rsa.c send.c 
+                         servers.c users.c 
+  Added files:
+    src                  dcc.c 
+  Log:
+  - Re-wrote entire io loop/connecting/hub functions for non-blocking sockets
+  - Added DCC chat / telnet interface, no commands yet, but login works! :)
+  - Added some comments here and there
+  - Added hostname self-lookup check to determine IP
+  - Added stuff to TODO list from Jeff
+  
+  Revision  Changes    Path
+  1.15      +6 -5      zorak-services/TODO
+  1.2       +12 -1     zorak-services/include/defines.h
+  1.2       +1 -1      zorak-services/include/main.h
+  1.2       +6 -4      zorak-services/include/me.h
+  1.34      +3 -0      zorak-services/include/msg.h
+  1.2       +41 -4     zorak-services/include/net.h
+  1.2       +2 -0      zorak-services/include/operserv.h
+  1.2       +1 -2      zorak-services/include/rsa.h
+  1.2       +5 -0      zorak-services/include/servers.h
+  1.21      +1 -0      zorak-services/src/Makefile.in
+  1.13      +1 -1      zorak-services/src/channels.c
+  1.1       +123 -0    zorak-services/src/dcc.c (new)
+  1.37      +27 -42    zorak-services/src/main.c
+  1.32      +381 -118  zorak-services/src/net.c
+  1.17      +11 -14    zorak-services/src/oline.c
+  1.25      +34 -4     zorak-services/src/operserv.c
+  1.55      +4 -2      zorak-services/src/parse.c
+  1.4       +3 -4      zorak-services/src/rsa.c
+  1.21      +4 -0      zorak-services/src/send.c
+  1.12      +14 -0     zorak-services/src/servers.c
+  1.31      +2 -2      zorak-services/src/users.c
+
+
+
+wiz         2002/07/13 20:40:53 HST	(20020714_0)
+
+  Modified files:
+    src                  parse.c users.c 
+  Removed files:
+    src                  Makefile 
+  Log:
+  - Changed match("*.newnet.net") to strncasecmp("services", 8)
+  - Removed oper nick from WHOKILL (requested by Jeff)
+  
+  Revision  Changes    Path
+  1.2       +0 -59     zorak-services/src/Makefile (dead)
+  1.54      +3 -2      zorak-services/src/parse.c
+  1.30      +1 -1      zorak-services/src/users.c
+
+
+
+wiz         2002/07/13 10:37:46 HST	(20020713_0)
+
+  Modified files:
+    .                    configure 
+    autoconf             configure.in 
+    include              config.h flags.h format.h irc_string.h 
+                         msg.h privs.h snuggle.h sys.h.in 
+    src                  .depend Makefile.in aclone.c channels.c 
+                         chanserv.c clone.c conf.c format.c help.c 
+                         irc_string.c main.c md5.c mem.c net.c 
+                         nicks.c nickserv.c oline.c operserv.c 
+                         parse.c rsa.c send.c servers.c snuggle.c 
+                         users.c 
+  Added files:
+    include              channels.h chanserv.h client.h clone.h 
+                         conf.h defines.h help.h irc_time.h 
+                         irc_types.h main.h md5.h me.h mem.h net.h 
+                         nicks.h nickserv.h oline.h operserv.h 
+                         parse.h rsa.h sclients.h send.h servers.h 
+    src                  Makefile sclients.c 
+  Removed files:
+    include              h.h struct.h 
+    src                  misc.c 
+  Log:
+  - Added many include files to configure script, many more library checks
+  - Broke up h.h into many new headers
+  - Moved all the protos from msg.h into {nick,chan,oper}serv.h
+  - Re-wrote entire header system, updated all source files to use it
+  - Fixed clone checking bug I made when I added CLONE_LIMIT #define's (hi Jeff)
+  - Fixed SNUGGLE ADD bug that didn't check realname masks for sanity (HI JEFF!@#!@#)
+  
+  Revision  Changes    Path
+  1.9       +35 -7     zorak-services/autoconf/configure.in
+  1.13      +742 -167  zorak-services/configure
+  1.1       +55 -0     zorak-services/include/channels.h (new)
+  1.1       +23 -0     zorak-services/include/chanserv.h (new)
+  1.1       +66 -0     zorak-services/include/client.h (new)
+  1.1       +43 -0     zorak-services/include/clone.h (new)
+  1.1       +26 -0     zorak-services/include/conf.h (new)
+  1.14      +2 -1      zorak-services/include/config.h
+  1.1       +73 -0     zorak-services/include/defines.h (new)
+  1.5       +2 -2      zorak-services/include/flags.h
+  1.2       +2 -1      zorak-services/include/format.h
+  1.35      +0 -243    zorak-services/include/h.h (dead)
+  1.1       +43 -0     zorak-services/include/help.h (new)
+  1.2       +25 -1     zorak-services/include/irc_string.h
+  1.1       +25 -0     zorak-services/include/irc_time.h (new)
+  1.1       +26 -0     zorak-services/include/irc_types.h (new)
+  1.1       +27 -0     zorak-services/include/main.h (new)
+  1.1       +22 -0     zorak-services/include/md5.h (new)
+  1.1       +47 -0     zorak-services/include/me.h (new)
+  1.1       +30 -0     zorak-services/include/mem.h (new)
+  1.33      +9 -85     zorak-services/include/msg.h
+  1.1       +38 -0     zorak-services/include/net.h (new)
+  1.1       +47 -0     zorak-services/include/nicks.h (new)
+  1.1       +26 -0     zorak-services/include/nickserv.h (new)
+  1.1       +52 -0     zorak-services/include/oline.h (new)
+  1.1       +53 -0     zorak-services/include/operserv.h (new)
+  1.1       +50 -0     zorak-services/include/parse.h (new)
+  1.10      +21 -36    zorak-services/include/privs.h
+  1.1       +31 -0     zorak-services/include/rsa.h (new)
+  1.1       +33 -0     zorak-services/include/sclients.h (new)
+  1.1       +40 -0     zorak-services/include/send.h (new)
+  1.1       +34 -0     zorak-services/include/servers.h (new)
+  1.6       +42 -40    zorak-services/include/snuggle.h
+  1.17      +0 -157    zorak-services/include/struct.h (dead)
+  1.4       +37 -1     zorak-services/include/sys.h.in
+  1.7       +111 -50   zorak-services/src/.depend
+  1.1       +59 -0     zorak-services/src/Makefile (new)
+  1.20      +3 -3      zorak-services/src/Makefile.in
+  1.11      +5 -3      zorak-services/src/aclone.c
+  1.12      +82 -12    zorak-services/src/channels.c
+  1.5       +9 -18     zorak-services/src/chanserv.c
+  1.14      +14 -12    zorak-services/src/clone.c
+  1.19      +16 -8     zorak-services/src/conf.c
+  1.2       +5 -4      zorak-services/src/format.c
+  1.17      +12 -1     zorak-services/src/help.c
+  1.7       +7 -6      zorak-services/src/irc_string.c
+  1.36      +25 -10    zorak-services/src/main.c
+  1.5       +15 -14    zorak-services/src/md5.c
+  1.10      +7 -4      zorak-services/src/mem.c
+  1.18      +0 -48     zorak-services/src/misc.c (dead)
+  1.31      +16 -144   zorak-services/src/net.c
+  1.4       +9 -3      zorak-services/src/nicks.c
+  1.5       +10 -3     zorak-services/src/nickserv.c
+  1.16      +8 -5      zorak-services/src/oline.c
+  1.24      +22 -12    zorak-services/src/operserv.c
+  1.53      +15 -10    zorak-services/src/parse.c
+  1.3       +6 -3      zorak-services/src/rsa.c
+  1.1       +89 -0     zorak-services/src/sclients.c (new)
+  1.20      +7 -7      zorak-services/src/send.c
+  1.11      +6 -6      zorak-services/src/servers.c
+  1.30      +36 -6     zorak-services/src/snuggle.c
+  1.29      +14 -4     zorak-services/src/users.c
+
+
+
+wiz         2002/07/10 17:01:27 HST	(20020711_0)
+
+  Modified files:
+    autoconf             configure.in 
+    include              msg.h 
+    src                  oline.c operserv.c rsa.c 
+  Log:
+  - Added rcsid to configure.in
+  - Hopefully fixes SIGSEGV on linux while rehashing
+  
+  Revision  Changes    Path
+  1.8       +1 -2      zorak-services/autoconf/configure.in
+  1.32      +2 -0      zorak-services/include/msg.h
+  1.15      +13 -2     zorak-services/src/oline.c
+  1.23      +6 -0      zorak-services/src/operserv.c
+  1.2       +2 -1      zorak-services/src/rsa.c
+
+
+
+wiz         2002/07/04 13:58:54 HST	(20020704_4)
+
+  Modified files:
+    src                  parse.c 
+  Log:
+  - Included serno.h to h.h so all files have SERIALNUM #define
+  - Added SERIALNUM to ctcp_version() and m_version()
+  
+  Revision  Changes    Path
+  1.52      +1 -1      zorak-services/src/parse.c
+
+
+
+wiz         2002/07/04 13:58:54 HST	(20020704_3)
+
+  Modified files:
+    include              h.h 
+  Log:
+  - Included serno.h to h.h so all files have SERIALNUM #define
+  
+  Revision  Changes    Path
+  1.34      +2 -1      zorak-services/include/h.h
+
+
+
+wiz         2002/07/04 13:51:35 HST	(20020704_2)
+
+  Added files:
+    src                  rsa.c 
+  Log:
+  - Added rsa.c with all my leet openssl stuff in it
+  
+  Revision  Changes    Path
+  1.1       +81 -0     zorak-services/src/rsa.c (new)
+
+
+
+wiz         2002/07/04 13:42:27 HST	(20020704_1)
+
+  Added files:
+    .                    ChangeLog 
+  Log:
+  - Added new ChangeLog
+  
+  Revision  Changes    Path
+  1.7       +0 -0      zorak-services/ChangeLog (new)
+
+
+

@@ -1,0 +1,32 @@
+Index: net.c
+===================================================================
+RCS file: /usr/local/cvs/zorak-services/src/net.c,v
+retrieving revision 1.36
+diff -u -r1.36 net.c
+--- net.c	2 Oct 2002 22:08:42 -0000	1.36
++++ net.c	2 Oct 2002 22:49:24 -0000
+@@ -201,12 +201,12 @@
+ 	sock_t *sock = main_sock;
+ 
+ 	for (; sock; sock = sock->next)
+-		if (sock->flags & SOCK_DCC|SOCK_TELNET) {
++		if (sock->flags & (SOCK_DCC|SOCK_TELNET)) {
+ 			if (!(sock->flags & SOCK_CONN) && sock->last + CONNTIMEOUT <= now)
+ 				sock->flags |= SOCK_DEL;
+-			if (!(sock->flags & SOCK_AUTH) && sock->conn + CONNTIMEOUT <= now) {
+-				tosock(sock, "Login grace time exceeded, closing connection.\n");
++			else if (!(sock->flags & SOCK_AUTH) && sock->conn + CONNTIMEOUT <= now) {
+ 				sock->flags |= SOCK_DEL;
++				tosock(sock, "Login grace time exceeded, closing connection.\n");
+ 			}
+ 		}
+ }
+@@ -500,7 +500,7 @@
+ 
+ 	va_start(ap, tosend);
+ 	leet_vsprintf(msgbuf, tosend, ap);
+-	if (write(sock->socket, msgbuf, strlen(msgbuf)) < 0)
++	if (write(sock->socket, msgbuf, strlen(msgbuf)) < 0 && !(sock->flags & SOCK_DEL))
+ 		del_sock(sock);
+ 	va_end(ap);
+ }

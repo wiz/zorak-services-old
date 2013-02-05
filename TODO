@@ -1,0 +1,16 @@
+$Id: TODO,v 1.15 2002/07/30 03:22:58 wiz Exp $
+
+Stuff to do for Jeff:
+- Add snuggle count into status command
+
+Stuff to do before release:
+- Make it possible to register nicks, using email verification
+- Make it possible to register channels (using sponsers?)
+- Add R: line channel flags, for snuggles and what not
+- REMOVE ALL NEWNET STUFF so it can be independant of newnet
+- Add netsplit TS recording for reg'd nick clients for ident
+- Add list of exempted masks to not be glined by snuggles
+
+Stuff for hybrid
+- Make module that adds /chanserv, /nickserv, etc. commands
+- Make module to add NCHANGE command for services

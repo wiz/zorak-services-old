@@ -1,0 +1,160 @@
+dnl $Id: configure.in,v 1.9 2002/07/13 20:37:33 wiz Exp $
+AC_INIT
+
+AC_CONFIG_AUX_DIR(autoconf)
+AC_CONFIG_HEADER(include/sys.h)
+AC_PREFIX_DEFAULT(../services)
+
+AC_PROG_CC
+AC_CANONICAL_SYSTEM
+AC_PROG_MAKE_SET
+AC_PATH_PROG(RM, rm)
+AC_PATH_PROG(CP, cp)
+AC_PATH_PROG(MV, mv)
+AC_PATH_PROG(LN, ln)
+AC_PATH_PROG(SED, sed)
+AC_PROG_INSTALL
+
+AC_HEADER_STDC
+AC_CHECK_HEADERS(inttypes.h sys/resource.h sys/param.h unistd.h errno.h string.h strings.h sys/syslog.h stdlib.h stddef.h getopt.h)
+AC_CHECK_HEADER(stdarg.h, , AC_MSG_ERROR(** stdarg.h could not be found - zorak-services will not compile without it))
+AC_CHECK_FUNCS(strlcpy strlcat)
+
+dnl OpenSSL support - taken from ircd-hybrid-7 configure.in
+AC_MSG_CHECKING(for OpenSSL)
+AC_ARG_ENABLE(openssl,
+[  --enable-openssl[=DIR]         Enable OpenSSL support (DIR optional).
+  --disable-openssl            Disable OpenSSL support. ],
+[ cf_enable_openssl=$enableval ],
+[ cf_enable_openssl="auto" ])
+
+if test "X$cf_enable_openssl" != "Xno" ; then
+  cf_openssl_basedir=""
+  if test "X$cf_enable_openssl" != "Xauto" &&
+     test "X$cf_enable_openssl" != "Xyes" ; then
+     dnl Support for --enable-openssl=/some/place
+     cf_openssl_basedir="${cf_enable_openssl}"
+  else
+    dnl Do the auto-probe here.  Check some common directory paths.
+    for dirs in /usr/local/ssl /usr/pkg /usr/local \
+                /usr/local/openssl ; do
+      if test -f "${dirs}/include/openssl/opensslv.h" ; then
+        cf_openssl_basedir="${dirs}"
+        break
+      fi
+    done
+    unset dirs
+  fi
+  dnl Now check cf_openssl_found to see if we found anything.
+  if test "X$cf_openssl_basedir" != "X" ; then
+    if test -f "${cf_openssl_basedir}/include/openssl/opensslv.h" ; then
+      SSL_INCLUDES="-I${cf_openssl_basedir}/include"
+      SSL_LIBS="-L${cf_openssl_basedir}/lib"
+    else
+      dnl OpenSSL wasn't found in the directory specified.  Naughty
+      dnl administrator...
+      cf_openssl_basedir=""
+    fi
+  else
+    dnl Check for stock FreeBSD 4.x and 5.x systems, since their files
+    dnl are in /usr/include and /usr/lib.  In this case, we don't want to
+    dnl change INCLUDES or LIBS, but still want to enable OpenSSL.
+    dnl We can't do this check above, because some people want two versions
+    dnl of OpenSSL installed (stock FreeBSD 4.x/5.x and /usr/local/ssl)
+    dnl and they want /usr/local/ssl to have preference.
+    if test -f "/usr/include/openssl/opensslv.h" ; then
+      cf_openssl_basedir="/usr"
+    fi
+  fi
+  dnl If we have a basedir defined, then everything is okay.  Otherwise,
+  dnl we have a problem.
+  if test "X$cf_openssl_basedir" != "X" ; then
+    AC_MSG_RESULT($cf_openssl_basedir)
+    cf_enable_openssl="yes"
+  else
+    AC_MSG_RESULT(not found.  Please check your path.)
+    cf_enable_openssl="no"
+  fi
+  unset cf_openssl_basedir
+else
+  dnl If --disable-openssl was specified
+  AC_MSG_RESULT(disabled)
+fi
+
+save_CPPFLAGS="$CPPFLAGS"
+CPPFLAGS="$CPPFLAGS $SSL_INCLUDES"
+save_LIBS="$LIBS"
+LIBS="$LIBS $SSL_LIBS"
+if test "X$cf_enable_openssl" != "Xno"; then
+    dnl Check OpenSSL version (must be 0.9.6 or above!)
+    AC_MSG_CHECKING(for OpenSSL 0.9.6 or above)
+    AC_TRY_RUN(
+    [
+#include <openssl/opensslv.h>
+#include <stdlib.h>
+int main(void) {
+  if ( (OPENSSL_VERSION_NUMBER & 0x00906000) == 0x00906000)
+  {
+    exit(0);
+  }
+  exit(1);
+}
+    ], cf_openssl_version_ok='yes',
+       cf_openssl_version_ok='no',
+       cf_openssl_version_ok='no')
+
+    if test "X$cf_openssl_version_ok" = "Xyes"; then
+        AC_MSG_RESULT(ok)
+        dnl Do all the HAVE_LIBCRYPTO magic -- and check for ciphers
+        save_CPPFLAGS="$CPPFLAGS"
+        CPPFLAGS="$CPPFLAGS $SSL_LIBS"
+        AC_CHECK_LIB(crypto, RSA_free)
+        if test "X$ac_cv_lib_crypto_RSA_free" = "Xyes"; then
+            cf_openssl_ciphers=''
+dnl            AC_CHECK_FUNCS(EVP_bf_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}BF/256 BF/128 ")
+dnl            AC_CHECK_FUNCS(EVP_cast5_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}CAST/128 ")
+dnl            AC_CHECK_FUNCS(EVP_idea_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}IDEA/128 ")
+dnl            AC_CHECK_FUNCS(EVP_rc5_32_12_16_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}RC5.16/128 RC5.12/128 RC5.8/128 ")
+dnl            AC_CHECK_FUNCS(EVP_des_ede3_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}3DES/168 ")
+dnl            AC_CHECK_FUNCS(EVP_des_cfb,
+dnl                cf_openssl_ciphers="${cf_openssl_ciphers}DES/56 ")
+        fi
+        CPPFLAGS="$save_CPPFLAGS"
+        SSL_LIBS="$SSL_LIBS -lcrypto"
+    else
+        AC_MSG_RESULT(no - OpenSSL support disabled)
+    fi
+fi
+CPPFLAGS="$save_CPPFLAGS"
+LIBS="$save_LIBS"
+
+dnl Check if we want to use efence
+AC_MSG_CHECKING(if you want to enable ElectricFence)
+AC_ARG_ENABLE(efence,
+[  --enable-efence              Enable ElectricFence memory allocation debugger.
+  --disable-efence             Disable ElectricFence(default).],
+[
+  case "$enableval" in
+  yes)
+    ac_cv_efence="yes"
+    ;;
+  no)
+    ac_cv_efence="no"
+    ;;
+  *)
+    LIBS="$LIBS -L$enableval"
+    ac_cv_efence="yes"
+    ;;
+  esac
+])
+AC_MSG_RESULT($ac_cv_efence)
+
+AC_SUBST(DPATH)
+AC_SUBST(SSL_INCLUDES)
+AC_SUBST(SSL_LIBS)
+AC_OUTPUT(Makefile src/Makefile)
