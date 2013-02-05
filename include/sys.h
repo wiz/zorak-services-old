@@ -1,4 +1,4 @@
-/* include/sys.h.  Generated automatically by configure.  */
+/* include/sys.h.  Generated from sys.h.in by configure.  */
 /* include/sys.h.in.  Generated automatically from configure.in by autoheader.  */
 /* $Id: sys.h.in,v 1.4 2002/07/13 20:37:39 wiz Exp $ */
 
@@ -27,10 +27,10 @@
 #define HAVE_STRING_H 1
 
 /* Define if you have the `strlcat' function. */
-/* #undef HAVE_STRLCAT */
+#define HAVE_STRLCAT 1
 
 /* Define if you have the `strlcpy' function. */
-/* #undef HAVE_STRLCPY */
+#define HAVE_STRLCPY 1
 
 /* Define if you have the <sys/param.h> header file. */
 #define HAVE_SYS_PARAM_H 1

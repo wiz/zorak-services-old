@@ -3,8 +3,8 @@
 CC=	gcc
 RM=	/bin/rm
 MKDEP=	gcc -MM
-SSL_LIBS=  -lcrypto
-SSL_INCLUDES= 
+SSL_LIBS= -L/opt/local/lib -lcrypto
+SSL_INCLUDES= -I/opt/local/include
 
 # leet cflags
 CPPFLAGS=-I../include $(SSL_INCLUDES)
